@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tarjeta de presentacion</title>
+</head>
+
+<body>
+    <gato-game></gato-game>
+    <presentation-card-joaz></presentation-card-joaz>
+</body>
+<script>
+    class PresentationCard extends HTMLElement {
+        constructor() {
+            super();
+            this.nombre = null;
+            this.apellido = null;
+            this.email = null;
+            //this.importDocument = document.currentScript.ownerDocument;
+        }
+        connectedCallback() {
+
+            //declaracion del shadow root
+            let shadowRoot = this.attachShadow({
+                mode: 'open'
+            });
+            //solicitud de un numero valido para generar regilla
+            shadowRoot.appendChild('div');
+        }
+
+        disconnectedCallback() {
+            console.log('disconnected!');
+        }
+
+        attributeChangedCallback(name, oldVal, newVal) {
+            console.log(`Attribute: ${name} changed!`);
+        }
+    }
+
+    window.customElements.define('presentation-card-joaz', PresentationCard);
+</script>
+
+</html>
