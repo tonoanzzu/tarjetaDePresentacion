@@ -22,28 +22,55 @@
         }
         connectedCallback() {
 
+            let shadowRoot = this.attachShadow({
+                mode: 'open'
+            });
+
+            let div = document.createElement('div');
+            div.textContent = '';
+
+            shadowRoot.appendChild(div);
+
+
         }
 
         disconnectedCallback() {
             console.log('disconnected!');
         }
 
+        pintarMensaje(msj) {
+            this.innerHTML = msj
+        }
+
+
         attributeChangedCallback(name, oldVal, newVal) {
             //definicion de reglas
             console.log(`Attributos modificados!`);
 
+            console.log(this)
+
+
+
+
+
+
             if (name === 'nombre') {
                 if (newVal === 'antonio') {
                     console.log('SOY YO! Mi correo pertence a SKYNET')
+                    this.pintarMensaje('SOY YO! Mi correo pertence a SKYNET');
+
                 }
             }
 
             if (name === 'email') {
 
                 if (newVal.indexOf("gmail") > -1) {
-                    console.log('Mi correo pertence a SKYNET')
+                    //console.log('Mi correo pertence a SKYNET')
+                    this.pintarMensaje('Mi correo pertence a SKYNET');
                 }
             }
+
+
         }
 
         static get observedAttributes() {
