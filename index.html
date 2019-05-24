@@ -15,9 +15,11 @@
     class PresentationCard extends HTMLElement {
         constructor() {
             super();
-            this.nombre = null;
-            this.apellido = null;
-            this.email = null;
+
+        }
+        connectedCallback() {
+
+
             let shadowRoot = this.attachShadow({
                 mode: 'open'
             });
@@ -32,9 +34,7 @@
             div.appendChild(pMsj);
             shadowRoot.appendChild(div);
 
-
-        }
-        connectedCallback() {
+            console.log('valor actual de this', this.shadowRoot)
 
         }
 
@@ -47,12 +47,14 @@
         }
 
         attributeChangedCallback(name, oldVal, newVal) {
+
             //definicion de reglas
             //console.log(`Attributos modificados!`);
-            //console.log(this.attributes.nombre.value);
-            let elementos = this.shadowRoot.children;
+            console.log(this.shadowRoot.children[0]);
+
+            let elementos = this.shadowRoot.children[0];
             //console.log(elementos[0]);
-            let elementosP = elementos[0].children;
+            let elementosP = elementos.children;
             //console.log(elementosP);
 
 
@@ -78,9 +80,7 @@
             if (name === 'email') {
 
                 if (newVal.indexOf("gmail") > -1) {
-                    //console.log('Mi correo pertence a SKYNET')
-                    //this.pintarMensaje('Mi correo pertence a SKYNET');
-                    //∫elemento[0].innerHTML = 'Mi correo pertence a SKYNET';
+
                     elementosP[0].innerHTML = 'Nombre: ' + this.attributes.nombre.value;
                     elementosP[1].innerHTML = 'Apellido:' + this.attributes.apellido.value;
                     elementosP[2].innerHTML = 'Email:' + this.attributes.email.value;
@@ -90,10 +90,6 @@
 
             if (name === 'apellido') {
 
-
-                //console.log('Mi correo pertence a SKYNET')
-                //this.pintarMensaje('Mi correo pertence a SKYNET');
-                //∫elemento[0].innerHTML = 'Mi correo pertence a SKYNET';
                 elementosP[0].innerHTML = 'Nombre: ' + this.attributes.nombre.value;
                 elementosP[1].innerHTML = 'Apellido:' + this.attributes.apellido.value;
                 elementosP[2].innerHTML = 'Email:' + this.attributes.email.value;
