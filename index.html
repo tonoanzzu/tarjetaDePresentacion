@@ -13,25 +13,12 @@
 </body>
 <script>
     class PresentationCard extends HTMLElement {
-        constructor() {
-            super();
-
-        }
         connectedCallback() {
-
 
             let shadowRoot = this.attachShadow({
                 mode: 'open'
             });
             let div = document.createElement('div');
-            let pNombre = document.createElement('p');
-            let pApellido = document.createElement('p');
-            let pEmail = document.createElement('p');
-            let pMsj = document.createElement('p');
-            div.appendChild(pNombre);
-            div.appendChild(pApellido);
-            div.appendChild(pEmail);
-            div.appendChild(pMsj);
             shadowRoot.appendChild(div);
 
             console.log('valor actual de this', this.shadowRoot)
@@ -48,31 +35,16 @@
 
         attributeChangedCallback(name, oldVal, newVal) {
 
-            //definicion de reglas
-            //console.log(`Attributos modificados!`);
-            console.log(this.shadowRoot.children[0]);
 
-            let elementos = this.shadowRoot.children[0];
-            //console.log(elementos[0]);
-            let elementosP = elementos.children;
-            //console.log(elementosP);
-
-
+            console.log(this.shadowRoot);
 
             if (name === 'nombre') {
                 if (newVal === 'antonio') {
-                    //console.log('SOY YO! Mi correo pertence a SKYNET');
-                    elementosP[0].innerHTML = 'Nombre: ' + newVal;
-                    elementosP[1].innerHTML = 'Apellido:' + this.attributes.apellido.value;
-                    elementosP[2].innerHTML = 'Email:' + this.attributes.email.value;
-                    elementosP[3].innerHTML = 'SOY YO! Mi correo pertence a SKYNET';
-                    //this.pintarMensaje('SOY YO! Mi correo pertence a SKYNET');
+
+                    this.shadowRoot.innerHTML = 'Nombre: ' + newVal + '<br>Apellido:' + this.attributes.apellido.value + '<br>Email:' + this.attributes.email.value + '<br> SOY YO! Mi correo pertence a SKYNET'
+
                 } else {
-                    //console.log('SOY YO! Mi correo pertence a SKYNET');
-                    elementosP[0].innerHTML = 'Nombre: ' + newVal;
-                    elementosP[1].innerHTML = 'Apellido:' + this.attributes.apellido.value;
-                    elementosP[2].innerHTML = 'Email:' + this.attributes.email.value;
-                    elementosP[3].innerHTML = '';
+                    this.shadowRoot.innerHTML = 'Nombre: ' + newVal + '<br>Apellido:' + this.attributes.apellido.value + '<br>Email:' + this.attributes.email.value;
 
                 }
             }
@@ -81,19 +53,18 @@
 
                 if (newVal.indexOf("gmail") > -1) {
 
-                    elementosP[0].innerHTML = 'Nombre: ' + this.attributes.nombre.value;
-                    elementosP[1].innerHTML = 'Apellido:' + this.attributes.apellido.value;
-                    elementosP[2].innerHTML = 'Email:' + this.attributes.email.value;
-                    elementosP[3].innerHTML = 'Mi correo pertence a SKYNET';
+                    this.shadowRoot.innerHTML = 'Nombre: ' + this.attributes.nombre.value + '<br>Apellido:' + this.attributes.apellido.value + '<br>Email:' + newVal + '<br>Mi correo pertence a SKYNET'
+
+                } else {
+
+                    this.shadowRoot.innerHTML = 'Nombre: ' + this.attributes.nombre.value + '<br>Apellido:' + this.attributes.apellido.value + '<br>Email:' + newVal
+
                 }
             }
 
             if (name === 'apellido') {
 
-                elementosP[0].innerHTML = 'Nombre: ' + this.attributes.nombre.value;
-                elementosP[1].innerHTML = 'Apellido:' + this.attributes.apellido.value;
-                elementosP[2].innerHTML = 'Email:' + this.attributes.email.value;
-                elementosP[3].innerHTML = '';
+                this.shadowRoot.innerHTML = 'Nombre: ' + this.attributes.nombre.value + '<br>Apellido:' + newVal + '<br>Email:' + this.attributes.email.value
 
             }
 
