@@ -28,9 +28,7 @@
 
             let div = document.createElement('div');
             div.textContent = '';
-
             shadowRoot.appendChild(div);
-
 
         }
 
@@ -39,26 +37,18 @@
         }
 
         pintarMensaje(msj) {
-            this.innerHTML = msj
+            this.innerHTML = msj;
         }
-
 
         attributeChangedCallback(name, oldVal, newVal) {
             //definicion de reglas
             console.log(`Attributos modificados!`);
-
-            console.log(this)
-
-
-
-
-
+            console.log(this);
 
             if (name === 'nombre') {
                 if (newVal === 'antonio') {
-                    console.log('SOY YO! Mi correo pertence a SKYNET')
+                    console.log('SOY YO! Mi correo pertence a SKYNET');
                     this.pintarMensaje('SOY YO! Mi correo pertence a SKYNET');
-
                 }
             }
 
@@ -69,7 +59,6 @@
                     this.pintarMensaje('Mi correo pertence a SKYNET');
                 }
             }
-
 
         }
 
