@@ -18,17 +18,23 @@
             this.nombre = null;
             this.apellido = null;
             this.email = null;
-
-        }
-        connectedCallback() {
-
             let shadowRoot = this.attachShadow({
                 mode: 'open'
             });
-
             let div = document.createElement('div');
-            div.textContent = '';
+            let pNombre = document.createElement('p');
+            let pApellido = document.createElement('p');
+            let pEmail = document.createElement('p');
+            let pMsj = document.createElement('p');
+            div.appendChild(pNombre);
+            div.appendChild(pApellido);
+            div.appendChild(pEmail);
+            div.appendChild(pMsj);
             shadowRoot.appendChild(div);
+
+
+        }
+        connectedCallback() {
 
         }
 
@@ -42,13 +48,30 @@
 
         attributeChangedCallback(name, oldVal, newVal) {
             //definicion de reglas
-            console.log(`Attributos modificados!`);
-            console.log(this);
+            //console.log(`Attributos modificados!`);
+            //console.log(this.attributes.nombre.value);
+            let elementos = this.shadowRoot.children;
+            //console.log(elementos[0]);
+            let elementosP = elementos[0].children;
+            //console.log(elementosP);
+
+
 
             if (name === 'nombre') {
                 if (newVal === 'antonio') {
-                    console.log('SOY YO! Mi correo pertence a SKYNET');
-                    this.pintarMensaje('SOY YO! Mi correo pertence a SKYNET');
+                    //console.log('SOY YO! Mi correo pertence a SKYNET');
+                    elementosP[0].innerHTML = 'Nombre: ' + newVal;
+                    elementosP[1].innerHTML = 'Apellido:' + this.attributes.apellido.value;
+                    elementosP[2].innerHTML = 'Email:' + this.attributes.email.value;
+                    elementosP[3].innerHTML = 'SOY YO! Mi correo pertence a SKYNET';
+                    //this.pintarMensaje('SOY YO! Mi correo pertence a SKYNET');
+                } else {
+                    //console.log('SOY YO! Mi correo pertence a SKYNET');
+                    elementosP[0].innerHTML = 'Nombre: ' + newVal;
+                    elementosP[1].innerHTML = 'Apellido:' + this.attributes.apellido.value;
+                    elementosP[2].innerHTML = 'Email:' + this.attributes.email.value;
+                    elementosP[3].innerHTML = '';
+
                 }
             }
 
@@ -56,8 +79,26 @@
 
                 if (newVal.indexOf("gmail") > -1) {
                     //console.log('Mi correo pertence a SKYNET')
-                    this.pintarMensaje('Mi correo pertence a SKYNET');
+                    //this.pintarMensaje('Mi correo pertence a SKYNET');
+                    //∫elemento[0].innerHTML = 'Mi correo pertence a SKYNET';
+                    elementosP[0].innerHTML = 'Nombre: ' + this.attributes.nombre.value;
+                    elementosP[1].innerHTML = 'Apellido:' + this.attributes.apellido.value;
+                    elementosP[2].innerHTML = 'Email:' + this.attributes.email.value;
+                    elementosP[3].innerHTML = 'Mi correo pertence a SKYNET';
                 }
+            }
+
+            if (name === 'apellido') {
+
+
+                //console.log('Mi correo pertence a SKYNET')
+                //this.pintarMensaje('Mi correo pertence a SKYNET');
+                //∫elemento[0].innerHTML = 'Mi correo pertence a SKYNET';
+                elementosP[0].innerHTML = 'Nombre: ' + this.attributes.nombre.value;
+                elementosP[1].innerHTML = 'Apellido:' + this.attributes.apellido.value;
+                elementosP[2].innerHTML = 'Email:' + this.attributes.email.value;
+                elementosP[3].innerHTML = '';
+
             }
 
         }
