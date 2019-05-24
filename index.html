@@ -9,8 +9,7 @@
 </head>
 
 <body>
-    <gato-game></gato-game>
-    <presentation-card-joaz></presentation-card-joaz>
+    <presentation-card-joaz nombre=null apellido=null email=null></presentation-card-joaz>
 </body>
 <script>
     class PresentationCard extends HTMLElement {
@@ -19,16 +18,10 @@
             this.nombre = null;
             this.apellido = null;
             this.email = null;
-            //this.importDocument = document.currentScript.ownerDocument;
+
         }
         connectedCallback() {
 
-            //declaracion del shadow root
-            let shadowRoot = this.attachShadow({
-                mode: 'open'
-            });
-            //solicitud de un numero valido para generar regilla
-            shadowRoot.appendChild('div');
         }
 
         disconnectedCallback() {
@@ -36,8 +29,27 @@
         }
 
         attributeChangedCallback(name, oldVal, newVal) {
-            console.log(`Attribute: ${name} changed!`);
+            //definicion de reglas
+            console.log(`Attributos modificados!`);
+
+            if (name === 'nombre') {
+                if (newVal === 'antonio') {
+                    console.log('SOY YO! Mi correo pertence a SKYNET')
+                }
+            }
+
+            if (name === 'email') {
+
+                if (newVal.indexOf("gmail") > -1) {
+                    console.log('Mi correo pertence a SKYNET')
+                }
+            }
         }
+
+        static get observedAttributes() {
+            return ['nombre', 'apellido', 'email'];
+        }
+
     }
 
     window.customElements.define('presentation-card-joaz', PresentationCard);
